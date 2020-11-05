@@ -1,8 +1,8 @@
 --- 
-title: "NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)"
+title: "NYU Library Carpentry: Introduction to Working with Data"
 author: "Vicky Steeves"
 date: "November 5, 2020"
-description: "The Library Carpentry lesson, Introduction to Working with Data (Regular Expressions), edited and reformatted."
+description: "The Library Carpentry lesson, Introduction to Working with Data, edited and reformatted."
 site: bookdown::bookdown_site
 colorlinks: yes
 documentclass: book
@@ -13,7 +13,7 @@ output:
     config:
       toc:
         before: |
-          <p>Introduction to Working with Data (Regular Expressions)</p>
+          <p>Introduction to Working with Data</p>
           <p>Class website: <a href="https://nyu-dataservices.github.io/2020-11-05-nyu/">nyu-dataservices.github.io/2020-11-05-nyu/</a></p>
           <p>Instructor: <a href="https://vickysteeves.com">Vicky Steeves</a></p>
         after: |
@@ -30,4 +30,8 @@ output:
 
 # Welcome {-}
 
-Hello world!
+Welcome! This book is an adapation of the Library Carpentry lesson [Introduction to Working with Data](https://librarycarpentry.org/lc-data-intro/). It was made by Vicky Steeves for a Library Carpentry workshop at NYU.
+
+## Setup {-}
+
+This lesson does not require any special setup!

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Regular Expressions | NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)</title>
+  <meta name="description" content="The Library Carpentry lesson, Introduction to Working with Data (Regular Expressions), edited and reformatted." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Regular Expressions | NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The Library Carpentry lesson, Introduction to Working with Data (Regular Expressions), edited and reformatted." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Regular Expressions | NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)" />
+  
+  <meta name="twitter:description" content="The Library Carpentry lesson, Introduction to Working with Data (Regular Expressions), edited and reformatted." />
+  
+
+<meta name="author" content="Vicky Steeves" />
+
+
+<meta name="date" content="2020-11-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="lis-comp.html"/>
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p>Introduction to Working with Data (Regular Expressions)</p>
+<p>Class website: <a href="https://nyu-dataservices.github.io/2020-11-05-nyu/">nyu-dataservices.github.io/2020-11-05-nyu/</a></p>
+<p>Instructor: <a href="https://vickysteeves.com">Vicky Steeves</a></p>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Setup</a></li>
+<li class="chapter" data-level="" data-path="jargon-busting.html"><a href="jargon-busting.html"><i class="fa fa-check"></i>Jargon busting</a></li>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html"><i class="fa fa-check"></i>A computational approach</a><ul>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html#names-matter"><i class="fa fa-check"></i>Names Matter</a></li>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html#picking-open-formats"><i class="fa fa-check"></i>Picking open formats</a></li>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html#further-reading"><i class="fa fa-check"></i>Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html"><i class="fa fa-check"></i>Regular Expressions</a><ul>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#learning-common-regex-metacharacters"><i class="fa fa-check"></i>Learning common regex metacharacters</a><ul>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#group-challenges"><i class="fa fa-check"></i>Group Challenges</a></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#breakout-challenge"><i class="fa fa-check"></i>Breakout Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#regex-match-extract"><i class="fa fa-check"></i>Matching &amp; Extracting Strings</a></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#regex-in-google-sheets"><i class="fa fa-check"></i>Regex in Google Sheets</a></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#further-resources"><i class="fa fa-check"></i>Further Resources</a></li>
+</ul></li>
+<li class="divider"></li>
+<p>Original content is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p>Any questions, contact: <a href="mailto:vicky.steeves@nyu.edu">vicky.steeves@nyu.edu</a></p>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regex" class="section level1 unnumbered">
+<h1>Regular Expressions</h1>
+<p>Regular expressions (called <code>regex</code> for short) are a way to use patterns to find text. They are an incredibly powerful tool that can amplify your capacity to find, manage, and transform files. You can think of regex as a more complex “find and replac” operation. In a computational setting, we’ll refer to the text as a <code>string</code>, which is a contiguous sequence of symbols or values. For example, a word, a date, a set of numbers (e.g., a phone number), or an alphanumeric value (e.g., an identifier). A string could be any length, ranging from empty (zero characters) to one that spans many lines of text (including line break characters). You can use regex with pretty much every programming language, and even from within applications like OpenRefine and Google Sheets!</p>
+<p>In library searches, we are most familiar with a small part of regular expressions known as the “wild card character” (<code>*</code>), but there are many more features to the complete regular expressions syntax. Regular expressions will let you:</p>
+<ul>
+<li>Match on types of characters (e.g. ‘upper case letters’, ‘digits’, ‘spaces’, etc.).</li>
+<li>Match patterns that repeat any number of times (e.g. phone numbers, or addresses).</li>
+<li>Capture the parts of the original string that match your pattern (e.g. get the year from a birthday).</li>
+</ul>
+<p>Regular expressions rely on the use of literal characters (like the word “hello”) and metacharacters. A <code>metacharacter</code> is any American Standard Code for Information Interchange (ASCII) character that has a special meaning. By using metacharacters and possibly literal characters, you can construct a regex for finding strings or files that match a pattern rather than a specific string.</p>
+<div class="figure">
+<img src="imgs/regex-viz.png" alt="" />
+<p class="caption">An example of a regular expression, visualized with REGEXPER</p>
+</div>
+<p>For example, say you wants to change the way that our office telephone numbers on are displayed on the website by removing the parentheses around the area code. Rather than search for each specific phone number (that could take forever and be prone to error) or searching for every open parenthesis character (could also take forever and return many false-positives), you could search for the pattern of a phone number and do bulk transformations! Save yourself all the time!!</p>
+<p>Since regular expressions defines some ASCII characters as “metacharacters” that have more than their literal meaning, it is also important to be able to “escape” these metacharacters to use them for their literal meaning. For example, the period <code>.</code> means “match any character”, but if you want to match an actual period like at the end of a sentence then you will need to use a <code>\</code> in front of it to signal that you want to use the period as a plain old period and not a metacharacter meaning “match any character.”</p>
+<p>A very simple use of a regular expression would be to locate the same word spelled two different ways. For example the regular expression <code>organi[sz]e</code> matches both <code>organise</code> and <code>organize</code>. But because it locates all matches for the pattern in the file, not just for that word, it would also match <code>reorganise</code>, <code>reorganize</code>, <code>organises</code>, <code>organizes</code>, <code>organised</code>, <code>organized</code>, etc.</p>
+<div id="learning-common-regex-metacharacters" class="section level2 unnumbered">
+<h2>Learning common regex metacharacters</h2>
+<p>Regular expressions tend to be easier to write than they are to read. This is less of a problem if you are the only one who ever needs to maintain the program, but if several people need to watch over it, the syntax can turn into more of a hindrance than an aid. I always make sure to: a) keep a cheatsheet on hand if I ever need to look at a regex, and b) document what my regex is trying to do in a notes document or README file associated with the work I am using regex for. Here are the common regex metacharacters and some norms.</p>
+<p>Square brackets can be used to define a list or range of characters to be found. So:</p>
+<ul>
+<li><code>[ABC]</code> matches A or B or C.</li>
+<li><code>[A-Z]</code> matches any upper case letter.</li>
+<li><code>[A-Za-z]</code> matches any upper or lower case letter.</li>
+<li><code>[A-Za-z0-9]</code> matches any upper or lower case letter or any digit.</li>
+</ul>
+<p>Note that regex are case sensitive! <code>A</code> will not match <code>a</code>. There are other metacharacters that help us match:</p>
+<ul>
+<li><code>.</code> matches any character.</li>
+<li><code>\d</code> matches any single digit.</li>
+<li><code>\w</code> matches any part of word character (equivalent to <code>[A-Za-z0-9]</code>).</li>
+<li><code>\s</code> matches any space, tab, or newline.</li>
+<li><code>\</code> used to escape the following character when that character is a special character. So, for example, a regular expression that found <code>.com</code> would be <code>\.com</code> because <code>.</code> is a special character that matches any character.</li>
+<li><code>^</code> is an “anchor” which asserts the position at the start of the line. So what you put after the caret will only match if they are the first characters of a line. The caret is also known as a circumflex.</li>
+<li><code>$</code> is an “anchor” which asserts the position at the end of the line. So what you put before it will only match if they are the last characters of a line.</li>
+<li><code>\b</code> asserts that the pattern must match at a word boundary. Putting this either side of a word stops the regular expression matching longer variants of words. So:
+<ul>
+<li>the regular expression <code>mark</code> will match not only <code>mark</code> but also find <code>marking</code>, <code>market</code>, <code>unremarkable</code>, and so on.</li>
+<li>the regular expression <code>\bword</code> will match <code>word</code>, <code>wordless</code>, and <code>wordlessly</code>.</li>
+<li>the regular expression <code>comb\b</code> will match <code>comb</code> and <code>honeycomb</code> but not <code>combine</code>.</li>
+<li>the regular expression <code>\brespect\b</code> will match <code>respect</code> but not <code>respectable</code> or <code>disrespectful</code>.</li>
+</ul></li>
+</ul>
+<p>Other useful special characters are:</p>
+<ul>
+<li><code>*</code> matches the preceding element zero or more times. For example, <code>ab*c</code> matches “ac”, “abc”, “abbbc”, etc.</li>
+<li><code>+</code> matches the preceding element one or more times. For example, <code>ab+c</code> matches “abc”, “abbbc” but not “ac”.</li>
+<li><code>?</code> matches when the preceding character appears zero or one time.</li>
+<li><code>{VALUE}</code> matches the preceding character the number of times defined by VALUE; ranges, say, 1-6, can be specified with the syntax <code>{VALUE,VALUE}</code>, e.g. <code>\d{1,9}</code> will match any number between one and nine digits in length.</li>
+<li><code>|</code> means <strong>or</strong>.</li>
+<li><code>/i</code> renders an expression case-insensitive (equivalent to <code>[A-Za-z]</code>).</li>
+</ul>
+<p>So we can use these all in combination with each other to find text that matches our patterns. For example, when using a pattern <code>text?.*</code>, it will find files like:</p>
+<ul>
+<li><code>textf.txt</code></li>
+<li><code>text1.asp</code></li>
+<li><code>text9.html</code></li>
+</ul>
+<div id="group-challenges" class="section level3 unnumbered">
+<h3>Group Challenges</h3>
+<p>To embed this knowledge we won’t - however - be using computers. Instead we’ll use pen and paper for now.</p>
+<p>Let’s try out these exercises as a larger group using the cheatsheet I’ve given you above to be create regular expressions that answer these questions. I’ll call out the question, I’ll give you all some time, and whoever wants to either chat out an answer or walk us through their answer on audio would be welcome to!</p>
+<ol style="list-style-type: decimal">
+<li><p>What will the regular expression <code>^[Oo]rgani.e\b</code> match?</p></li>
+<li><p>What will the regular expression <code>^[Oo]rgani.e\w*</code> match?</p></li>
+<li><p>What will the regular expression <code>[Oo]rgani.e\w+$</code> match?</p></li>
+<li><p>What will the regular expression <code>^[Oo]rgani.e\w?\b</code> match?</p></li>
+<li><p>What will the regular expression <code>^[Oo]rgani.e\w?$</code> match?</p></li>
+<li><p>What will the regular expression <code>\b[Oo]rgani.e\w{2}\b</code> match?</p></li>
+<li><p>What will the regular expression <code>\b[Oo]rgani.e\b|\b[Oo]rgani.e\w{1}\b</code> match?</p></li>
+</ol>
+<p>This logic is useful when you have lots of files in a directory, when those files have logical file names, and when you want to isolate a selection of files. It can be used for looking at cells in spreadsheets for certain values, or for extracting some data from a column of a spreadsheet to make new columns. There are many other contexts in which regex is useful when using a computer to search through a document, spreadsheet, or file structure. Some real-world use cases for regex are included on an <a href="https://acrl.ala.org/techconnect/post/fear-no-longer-regular-expressions/">ACRL Tech Connect blog</a>.</p>
+</div>
+<div id="breakout-challenge" class="section level3 unnumbered">
+<h3>Breakout Challenge</h3>
+<p>You will be put in teams of four to six to get the answers for the exercises below. If you want to check your logic use <a href="https://regex101.com/">regex101</a>, <a href="http://myregexp.com/">myregexp</a>, <a href="http://www.regexpal.com/">regex pal</a> or <a href="http://regexper.com/">regexper.com</a>. The first three help you see what text your regular expression will match, the latter visualizes the workflow of a regular expression.</p>
+<ol style="list-style-type: decimal">
+<li><p>What will the regular expression <code>Fr[ea]nc[eh]</code> match?</p></li>
+<li><p>What will the regular expression <code>Fr[ea]nc[eh]$</code> match?</p></li>
+<li><p>What would match the strings <code>French</code> and <code>France</code> that appear at the beginning of a line?</p></li>
+<li><p>How do you match the whole words <code>colour</code> and <code>color</code> (case insensitive)?</p></li>
+<li><p>How would you find the whole word <code>headrest</code> and or <code>head rest</code> but not <code>head  rest</code> (that is, with two spaces between head and rest?</p></li>
+<li><p>How would you find a string that ends with four letters preceded by at least one zero?</p></li>
+<li><p>How do you match any four-digit string anywhere?</p></li>
+<li><p>How would you match the date format <code>dd-MM-yyyy</code>?</p></li>
+<li><p>How would you match the date format <code>dd-MM-yyyy</code> or <code>dd-MM-yy</code> at the end of a line only?</p></li>
+<li><p>How would you match publication formats such as <code>British Library : London, 2015 and Manchester University Press: Manchester, 1999</code>?</p></li>
+</ol>
+</div>
+</div>
+<div id="regex-match-extract" class="section level2 unnumbered">
+<h2>Matching &amp; Extracting Strings</h2>
+<p>We’ll do this last set of exercises together as a large group again. For this exercise, open a browser and go to <a href="https://regex101.com" class="uri">https://regex101.com</a>. Regex101.com is a free regular expression debugger with real time explanation, error detection, and highlighting. It will help us go through the following exercises to do some more complex tasks with regular expressions.</p>
+<p>Open the <a href="https://github.com/NYU-DataServices/lc-data-intro/blob/main/swcCoC.md">swcCoC.md</a> file, copy the text, and paste that into the test string box.</p>
+<p>For a quick test to see if it’s working, type the string <code>community</code> into the regular expression box.</p>
+<p>If you look in the box on the right of the screen, you see that the expression matches six instances of the string <code>community</code> (the instances are also highlighted within the text).</p>
+<p>I’ll call out the question, I’ll give you all some time, and whoever wants to either chat out an answer or walk us through their answer on audio would be welcome to!</p>
+<ol style="list-style-type: decimal">
+<li><p>Type <code>community</code>. You get three matches. Why not six?</p></li>
+<li><p>If you want to match <code>community-led</code> by adding other regex characters to the expression community, what would they be?</p></li>
+<li><p>Change the expression to <code>communi</code> and you get 15 full matches of several words. Why?</p></li>
+<li><p>Type the expression<code>[Cc]ommuni</code>. You get 16 matches. Why?</p></li>
+<li><p>Type the expression <code>^[Cc]ommuni</code>. You get no matches. Why?</p></li>
+<li><p>Find all of the words starting with <code>Comm</code> or <code>comm</code> that are plural.</p></li>
+<li><p>Let’s look at phone numbers: three digits, a dash, and four digits. How would we write a regex expression that matches this?</p></li>
+<li><p>How would we expand the expression above to include an area code (three digits and a dash)?</p></li>
+<li><p>How would we expand the expression above to include a phone number with an area code in parenthesis, separated from the phone number, with or without a space?</p></li>
+<li><p>Country codes are preceded by a <code>+</code> and can have up to three digits. We also have to consider that there may or may not be a space between the country code and anything appearing next. How can we expand our phone number regex to include that?</p></li>
+</ol>
+<p>One of the reasons we stress the value of consistent and predictable directory and filenaming conventions is that working in this way enables you to use the computer to select files based on the characteristics of their file names. For example, if you have a bunch of files where the first four digits are the year and you only want to do something with files from <code>2017</code>, then you can using regex! Or if you have <code>journal</code> somewhere in a filename when you have data about journals, you can use regex to select just those files. Equally, using plain text formats means that you can go further and select files or elements of files based on characteristics of the data within those files.</p>
+</div>
+<div id="regex-in-google-sheets" class="section level2 unnumbered">
+<h2>Regex in Google Sheets</h2>
+<p>For our last exercise, I thought we would do one example of how to use regex in an application we probably all work in: Google Sheets! Google Sheets has a function called <code>REGEXEXTRACT</code> which takes as the first argument a string and a quoted regular expression in the second, like so: <code>=REGEXEXTRACT(G2, "[\w.-]+@")</code></p>
+<p>So let’s make a new column based on an old column in Google Sheets, using regex! Do this individually and we’ll come back and share strategies as a larger group.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open this Google Sheet with your NYU account: <a href="https://docs.google.com/spreadsheets/d/19GNBt_-2EQUKpUnt1T6RbRrAn13XyIIV2Cm7w88W_M0/edit?usp=sharing" class="uri">https://docs.google.com/spreadsheets/d/19GNBt_-2EQUKpUnt1T6RbRrAn13XyIIV2Cm7w88W_M0/edit?usp=sharing</a></p></li>
+<li><p>Click <code>File &gt; Make a copy</code>, and make a copy of it in your NYU Google Drive.</p></li>
+<li><p>Look in the <code>ADDRESS</code> column and notice that the values contain the latitude and longitude in parenthesis after the library address.</p></li>
+<li><p>Construct a regular expression to match and extract the latitude and longitude into a new column named <code>latlong</code>.</p></li>
+</ol>
+</div>
+<div id="summary-1" class="section level2 unnumbered">
+<h2>Summary</h2>
+<p>Please fill in this: <a href="https://forms.gle/kCA6zx4UY6zvB5EJ8" class="uri">https://forms.gle/kCA6zx4UY6zvB5EJ8</a>.</p>
+<ul>
+<li>Regular expressions are used for pattern matching and can be used in many technologies, tools, and programming languages.</li>
+<li>Regular expressions are useful for searching and transforming data.</li>
+</ul>
+</div>
+<div id="further-resources" class="section level2 unnumbered">
+<h2>Further Resources</h2>
+<p>Test yourself with <a href="https://regexcrossword.com/">RegexCrossword.com/</a> or via the extra quizzes provided by Library Carpentries: <a href="https://librarycarpentry.org/lc-data-intro/03-quiz/index.html" class="uri">https://librarycarpentry.org/lc-data-intro/03-quiz/index.html</a>.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="lis-comp.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nyu-dataservices/lc-data-intro/edit/main/02-regex.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>

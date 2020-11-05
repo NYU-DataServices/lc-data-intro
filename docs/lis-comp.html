@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>A computational approach | NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)</title>
+  <meta name="description" content="The Library Carpentry lesson, Introduction to Working with Data (Regular Expressions), edited and reformatted." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="A computational approach | NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="The Library Carpentry lesson, Introduction to Working with Data (Regular Expressions), edited and reformatted." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A computational approach | NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)" />
+  
+  <meta name="twitter:description" content="The Library Carpentry lesson, Introduction to Working with Data (Regular Expressions), edited and reformatted." />
+  
+
+<meta name="author" content="Vicky Steeves" />
+
+
+<meta name="date" content="2020-11-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="jargon-busting.html"/>
+<link rel="next" href="regex.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<p>Introduction to Working with Data (Regular Expressions)</p>
+<p>Class website: <a href="https://nyu-dataservices.github.io/2020-11-05-nyu/">nyu-dataservices.github.io/2020-11-05-nyu/</a></p>
+<p>Instructor: <a href="https://vickysteeves.com">Vicky Steeves</a></p>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Setup</a></li>
+<li class="chapter" data-level="" data-path="jargon-busting.html"><a href="jargon-busting.html"><i class="fa fa-check"></i>Jargon busting</a></li>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html"><i class="fa fa-check"></i>A computational approach</a><ul>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html#names-matter"><i class="fa fa-check"></i>Names Matter</a></li>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html#picking-open-formats"><i class="fa fa-check"></i>Picking open formats</a></li>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html#summary"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="lis-comp.html"><a href="lis-comp.html#further-reading"><i class="fa fa-check"></i>Further Reading</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html"><i class="fa fa-check"></i>Regular Expressions</a><ul>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#learning-common-regex-metacharacters"><i class="fa fa-check"></i>Learning common regex metacharacters</a><ul>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#group-challenges"><i class="fa fa-check"></i>Group Challenges</a></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#breakout-challenge"><i class="fa fa-check"></i>Breakout Challenge</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#regex-match-extract"><i class="fa fa-check"></i>Matching &amp; Extracting Strings</a></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#regex-in-google-sheets"><i class="fa fa-check"></i>Regex in Google Sheets</a></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#summary-1"><i class="fa fa-check"></i>Summary</a></li>
+<li class="chapter" data-level="" data-path="regex.html"><a href="regex.html#further-resources"><i class="fa fa-check"></i>Further Resources</a></li>
+</ul></li>
+<li class="divider"></li>
+<p>Original content is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.</p>
+<p>Any questions, contact: <a href="mailto:vicky.steeves@nyu.edu">vicky.steeves@nyu.edu</a></p>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">NYU Library Carpentry: Introduction to Working with Data (Regular Expressions)</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="lis-comp" class="section level1 unnumbered">
+<h1>A computational approach</h1>
+<p>To start this lesson, let’s first ask: why take an automated or computational approach?</p>
+<p>This is otherwise known as the ‘why not do it manually?’ question. There are plenty of times when manual work is the easiest, fastest, and most efficient approach. Here are two conditions that should make you consider using automation:</p>
+<ol style="list-style-type: decimal">
+<li>You know how to automate the task.</li>
+<li>You think this is a task you will do over and over again.</li>
+</ol>
+<p>Automation refers to a process or procedure that runs with little to no supervision or action. Libraries have been automating workflows for years and many the Library Carpentry lessons can help people in libraries consider and implement automation approaches to further those efforts. You may often receive reports that you have to manually format or bibliographies where you have to clean metadata.</p>
+<p>Some motivations and takeaways:</p>
+<ul>
+<li><em>Automate to make the time to do something else</em>! Taking the time to gather together even the most simple programming skills can save time to do more interesting stuff! (even if often that more interesting stuff is learning more programming skills…)</li>
+<li>Consider the role of programming in professional development. <em>Computational skills improve your efficiency and effectiveness</em>. Stay alert to skills you want to learn, and be aware of what skills you can make sure your staff learn, as well.</li>
+<li><em>Knowing (even a little) code helps you</em> evaluate projects that use code. Programming can seem unknowable. Getting to run some code can empower you to dive in, start small, and ramp up!</li>
+</ul>
+<p><strong>Discussion break</strong></p>
+<p>Is there something you would like to automate in your work?</p>
+<div class="figure">
+<img src="imgs/is_it_worth_the_time.png" alt="" />
+<p class="caption">‘Is it worth the time?’ by Randall Munroe available at <a href="https://xkcd.com/1205/" class="uri">https://xkcd.com/1205/</a> under a Creative Commons Attribution-NonCommercial 2.5 License.</p>
+</div>
+<div id="names-matter" class="section level2 unnumbered">
+<h2>Names Matter</h2>
+<p>So let’s set ourselves up well to be able to automate our tasks. We are all guilty of naming our files in such a way that sometimes we have a hard time finding them, and that means that it’ll be harder for us to work with them in an automated fashion. The following XKCD comic may be all too familiar:</p>
+<div class="figure">
+<img src="imgs/someone_elses_documents_folder.png" alt="" />
+<p class="caption">‘Protip: Never look in someone else’s documents folder.’ by Randall Munroe available at <a href="https://xkcd.com/1459/" class="uri">https://xkcd.com/1459/</a> under a Creative Commons Attribution-NonCommercial 2.5 License.</p>
+</div>
+<p>There are a number of other <a href="http://20px.com/blog/2015/07/16/catalogue-bad-file-naming/">less than ideal file naming examples</a> cataloged by Twenty Pixels. Do any of these examples look familiar?</p>
+<p>Some best practices include:</p>
+<ul>
+<li>Prefix your files with the date created using a <code>YYYY-MM-DD</code> format</li>
+<li>Avoid special characters like <code>&amp;</code>, <code>%</code>, <code>$</code>, <code>#</code>, <code>@</code>, and <code>*</code>. Just use letters and numbers.</li>
+<li>Do not make file identity dependent on capitalization unless implementing camel case (e.g. <code>fileName.xml</code>).</li>
+<li>Never use spaces in file names – many systems and software will not recognize them or will give errors unless such filenames are treated specially. Use an underscore <code>_</code> or a dash <code>-</code> instead of a space.</li>
+<li>Use short file names. For your sake and the sake of systems that’ll fail if you give it like a 50 character file name.</li>
+</ul>
+<p><strong>Naming files sensible things is good for you and for your computers</strong></p>
+<p>Working with data is made easier by structuring your files in a consistent and predictable manner. Without structured information, our lives would be much poorer. As library and archive people, we know this. But let’s linger on this a little longer because for working with data it is especially important.</p>
+<p>Examining URLs is a good way of thinking about why structuring data in a consistent and predictable manner might be useful in your work. Good URLs represent with clarity the content of the page they identify, either by containing semantic elements or by using a single data element found across a set or majority of pages.</p>
+<p>A typical example of the former are the URLs used by news websites or blogging services. WordPress URLs follow the format:</p>
+<p><code>ROOT/YYYY/MM/DD/words-of-title-separated-by-hyphens</code></p>
+<p><a href="https://cradledincaricature.com/2015/07/24/code-control-and-making-the-argument-in-the-humanities/">https://cradledincaricature.com/2015/07/24/code-control-and-making-the-argument-in-the-humanities/</a></p>
+<p>A similar style is used by news agencies such as a The Guardian newspaper:</p>
+<p><code>ROOT/SUB_ROOT/YYYY/MMM/DD/words-describing-content-separated-by-hyphens</code></p>
+<p><a href="https://www.theguardian.com/uk-news/2014/feb/20/rebekah-brooks-rupert-murdoch-phone-hacking-trial">https://www.theguardian.com/uk-news/2014/feb/20/rebekah-brooks-rupert-murdoch-phone-hacking-trial</a></p>
+<p>In data repositories, URLs structured by a single data element are often used. The National Library of Australia’s TROVE uses this format:</p>
+<p><code>ROOT/record-type/REF</code></p>
+<p><a href="https://trove.nla.gov.au/work/6315568">https://trove.nla.gov.au/work/6315568</a></p>
+<p>The Old Bailey Online uses the format:</p>
+<p><code>ROOT/browse.jsp?ref=REF</code></p>
+<p><a href="https://www.oldbaileyonline.org/browse.jsp?ref=OA16780417">https://www.oldbaileyonline.org/browse.jsp?ref=OA16780417</a></p>
+<p>What we learn from these examples is that a combination of semantic description and data elements make for consistent and predictable naming structures that are readable both by humans and machines. Transferring this kind of pattern to your own files makes it easier to browse, to search, and to query using both the standard tools provided by operating systems and by the more advanced tools that we’ll cover in these next days together. When we know what things look like, we can match on patterns and be able to automate quite a lot. We’ll look at pattern matching next!</p>
+<p>In practice, it’s also useful then to keep a standard way of organizing your projects alongside your file naming conventions, to help us avoid falling down the nested folder rabbit hole. This way of organizing projects I’ve found is one of the most helpful:</p>
+<ul>
+<li>Put each <code>project</code> in its own directory, which is named after the project and perhaps prepended with that <code>YYYY-MM-DD</code> of when the project started.
+<ul>
+<li>if this is a more general file structure, I tend to have a <code>CurrentWork</code> directory and a <code>Documents</code> directory to separate out the files I am keeping because I’ll refer to them again and the files I’m working on the most.</li>
+</ul></li>
+<li>A series of sub-directories such as <code>docs</code>, <code>data</code>, <code>metadata</code>, <code>events</code>, etc. depending on what you are working on.</li>
+<li>Within those directories, keep your naming convention!</li>
+</ul>
+<div class="figure">
+<img src="imgs/folder.png" alt="" />
+<p class="caption">Here’s my own personal file structure I use for my research projects!</p>
+</div>
+<p>The name of a file is important to ensuring it and its contents are easy to identify. <code>Data.csv</code> doesn’t fulfill this purpose. A title that describes the data does. And adding dating convention to the file name, associating derived data with base data through file names, and using directory structures to aid comprehension strengthens those connections.</p>
+</div>
+<div id="picking-open-formats" class="section level2 unnumbered">
+<h2>Picking open formats</h2>
+<p>Otherwise known as, <strong>plain text formats are your friend</strong>. Why? Because computers can process them!</p>
+<p>If you want computers to be able to process your stuff automatically, try to get in the habit where possible of using software-agnostic formats such as <code>.csv</code> (comma-separated values) or <code>.tsv</code> (tab-separated values) for tabular data/spreadsheets.</p>
+<p>These plain text formats are preferable to the proprietary formats (e.g., Microsoft Word or Excel) because they can be opened by many software packages – so they don’t make you rely on/have to pay for software to view your work! This is much more sustainable nad increases the chances of keeping the files viewable and editable in the future. Most standard office suites include the option to save files in <code>.txt</code>, <code>.csv</code>, and <code>.tsv</code> formats, meaning you can continue to work with familiar software and save your files in the more perennial formats. Compared to <code>.docx</code> or <code>.xlsx</code>, these formats have the additional benefit of containing only <strong>machine-readable elements</strong>.</p>
+<p>For instance, when we license data for text mining, we collect it in plain formats like <code>.txt</code> or <code>.xml</code> so that researchers who come to us to use this data can use it with their analysis scripts which might do things like automate looking for entities or keywords in large amounts of text. In Library Carpentry: The UNIX Shell lesson that we’ll do this afternoon with Andrew, we all see how the command line can be a powerful tool for working with text files.</p>
+<p>Word processors like Microsoft Word, LibreOffice Writer, and Google Docs will explicitly not work for this purpose – those tools are meant to optimize how documents appear to humans, not to computers. They add many hidden characters and generally are unsuitable for working with plain text files. The category of tool you’ll want to use to get around that is called <code>a text editor</code>. Text editors save only the text that you type – there is no hidden formatting or metadata. What you see in a text editor is what a computer will see when it tries to process that data.</p>
+<p>This is what it looks like when you open a Word doc in a plain text editor:</p>
+<div class="figure">
+<img src="imgs/word_in_text.png" alt="" />
+<p class="caption">A <code>.docx</code> file opened in Kate, a plain text editor</p>
+</div>
+<p>But this is what it looks like when you open a plain text file in a Word processor (in this case, LibreOffice Writer):</p>
+<div class="figure">
+<img src="imgs/text_in_word.png" alt="" />
+<p class="caption">A <code>.txt</code> file opened in LibreOffice Writer, a word proccesor</p>
+</div>
+<p>So when working with files for automation or computational purposes, it is more important to focus on meaningful transmission of data as opposed to formatting. However, there are plain files that can be rendered very fancifully while also staying plain-text! One example of this is <code>Markdown</code>. These materials are written in Markdown, in fact! A special kind, called RMarkdown, but still just plain Markdown :)</p>
+<p>Markdown files, which use the file extension <code>.md</code>, are machine and human readable. Markdown applications can be disparate, from simple to-do lists, to extensive manual pages. For example, GitHub renders text via Markdown. For instance, you can inspect the <a href="https://github.com/NYU-DataServices/lc-data-intro/blob/main/01-comp.Rmd">underlying Markdown for this lesson</a>! You can even do things like convert a <code>.csv</code> table to a <code>.md</code> table, using a helpful resources such as <a href="http://www.convertcsv.com/csv-to-markdown.htm">Convert CSV to Markdown</a>.</p>
+<p>The <a href="https://www.markdownguide.org/">Markdown Guide</a> is a helpful resource for learning Markdown but you can also try:</p>
+<ul>
+<li><a href="https://commonmark.org/help/">CommonMark’s guide</a></li>
+<li><a href="https://guides.github.com/features/mastering-markdown/">Mastering Markdown</a></li>
+<li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet">Markdown Here Cheatsheet</a></li>
+</ul>
+</div>
+<div id="summary" class="section level2 unnumbered">
+<h2>Summary</h2>
+<ul>
+<li>File directory structures should be consistent and predictable.</li>
+<li>Apply naming conventions to directories and file names to identify them, to create associations between data elements, and to assist with the long term readability and comprehension.</li>
+<li>If you’re interested in automation, then plain-text files are the best to use because they were made for computer-reading.</li>
+</ul>
+</div>
+<div id="further-reading" class="section level2 unnumbered">
+<h2>Further Reading</h2>
+<p>Burton, M., Lyon, L., Erdmann, C., &amp; Tijerina, B. (2018). “<a href="https://d-scholarship.pitt.edu/33891/">Shifting to data savvy: the future of data science in libraries</a>.”</p>
+<p>de la Cruz, J., &amp; Hogan, J. (2016). “<a href="https://www.semanticscholar.org/paper/%E2%80%9CHello%2C-World!%E2%80%9D%3A-Starting-a-Coding-Group-for-Cruz-Hogan/8d30476f321d7a0662446484fa62a5b86014abfb">‘Hello, World!’: Starting a Coding Group for Librarians</a>.” Public Services Quarterly, 12(3), 249-256.</p>
+<p>Ovadia, Steven. “<a href="https://academicworks.cuny.edu/cgi/viewcontent.cgi?article=1006&amp;context=lg_pubs">Markdown For Librarians And Academics</a>.” Behavioral &amp; Social Sciences Librarian 33.2 (2014): 120-124.</p>
+<p>Rosati, D. A. (2016). “<a href="https://www.semanticscholar.org/paper/Librarians-and-Computer-Programming%3A-Understanding-Rosati/4660ec96867e3b7b93e9248c1b69b9d4e482f13f">Librarians and Computer Programming: understanding the role of programming within the profession of librarianship</a>”. Dalhousie Journal of Interdisciplinary Management, 12(1).</p>
+<p>Yelton, A. (2015). “<a href="https://doi.org/10.5860/ltr.51n3">Coding for Librarians: Learning by Example</a>.” American Library Association.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="jargon-busting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regex.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": null,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/nyu-dataservices/lc-data-intro/edit/main/01-comp.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"toc": {
+"collapse": "subsection"
+},
+"search": true
+});
+});
+</script>
+
+</body>
+
+</html>
